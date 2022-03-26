@@ -1,38 +1,35 @@
 import { useEffect, useState } from "react";
 import { getAllMembers } from "./api/member";
 import { IMember } from "./interFace/member";
+import { StyledTable } from "./style";
 
 
 
 function App() {
   const [memberList, setMemberList] = useState<IMember[]>([])
 
-
   const getMemberList = async () => {
     try {
       const { data } = await getAllMembers();
-      // console.log(data);
       setMemberList(data)
     } catch (error) {
       console.error(error);
     }
   }
 
-
   const init = () => {
     getMemberList()
   }
 
-
   useEffect(init, []);
 
   return (
-    <div className="App">
+    <div>
       <div>add new member :
 
         <button>add member</button>
       </div>
-      <table>
+      <StyledTable>
         <thead>
           <th>first name</th>
           <th>last name</th>
@@ -51,7 +48,7 @@ function App() {
             <td>edit</td>
           </tr>)}
         </tbody>
-      </table>
+      </StyledTable>
 
     </div>
   );

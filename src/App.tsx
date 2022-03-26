@@ -1,17 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { getAllMembers, deleteMemberById } from "./api/member";
-import { IMember } from "./interFace/member";
-import { StyledTable, StyledContainer, StyledButton } from "./style";
+import { IMemberId } from "./interFace/member";
+import { StyledTable, StyledContainer, StyledButton } from "./styleApp";
+import NewMemberModal from "./NewMemberModal";
 
 
 
 function App() {
-  const [memberList, setMemberList] = useState<IMember[]>([])
+  const [memberList, setMemberList] = useState<IMemberId[]>([])
+  const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
 
   const getMemberList = async () => {
     try {
       const { data } = await getAllMembers();
       setMemberList(data)
+      setModalIsOpen(false)
     } catch (error) {
       console.error(error);
     }
@@ -35,16 +38,22 @@ function App() {
 
   return (
     <div>
-      <StyledButton>add new member</StyledButton>
-
+      <StyledButton onClick={() => setModalIsOpen(true)}>add new member</StyledButton>
+      <NewMemberModal
+        open={modalIsOpen}
+        handleClose={() => setModalIsOpen(false)}
+        updateMemberList={getMemberList}
+      />
       <StyledContainer>
         <StyledTable>
           <thead>
-            <th>first name</th>
-            <th>last name</th>
-            <th>phone number</th>
-            <th>email</th>
-            <th>Operation</th>
+            <tr>
+              <th>first name</th>
+              <th>last name</th>
+              <th>phone number</th>
+              <th>email</th>
+              <th>Operation</th>
+            </tr>
           </thead>
           <tbody>
             {memberList.map(member => <tr key={member.member_id}>

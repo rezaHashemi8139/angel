@@ -16,6 +16,7 @@ export const StyledTable = styled.table`
     padding: 1rem;
   }
 `;
+
 export const StyledButton = styled.button`
   border: none;
   opacity: 0.85;

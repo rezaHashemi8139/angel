@@ -3,6 +3,7 @@ import { getAllMembers, deleteMemberById, getMemberById } from "./api/member";
 import { IMemberId, IMember } from "./interFace/member";
 import { StyledTable, StyledContainer, StyledButton } from "./styleApp";
 import NewMemberModal from "./NewMemberModal";
+import Filter from "./filter";
 
 interface ISort {
   sortField: keyof IMemberId
@@ -69,8 +70,7 @@ function App() {
       sortType.sortKind = "des"
       sortType.isSorted = true
     }
-    setModifiedMemberList(sortList(memberList, sortType))
-    sortList(memberList, sortType)
+    setModifiedMemberList(sortList(modifiedMemberList, sortType))
     setSort(sortType)
   }
 
@@ -99,6 +99,8 @@ function App() {
         handleClose={() => setModalIsOpen(false)}
         updateMemberList={getMemberList}
       />
+      <Filter updateMemberList={(list: Array<IMemberId>) => setModifiedMemberList(list)}
+        list={memberList} />
       <StyledContainer>
         <StyledTable>
           <thead>
@@ -114,7 +116,6 @@ function App() {
               <th className="sorting" id="phone" onClick={handleSort}>
                 <span>phone number</span>
                 {sort.isSorted && sort.sortField === "phone" && <i className={`fa fa-arrow-${sort.sortKind === "asc" ? "up" : "down"}`} />}
-
               </th>
               <th className="sorting" id="email" onClick={handleSort}>
                 <span>email</span>

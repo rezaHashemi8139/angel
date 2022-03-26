@@ -2,7 +2,7 @@ import { useState } from "react";
 import * as Yup from "yup";
 import { Formik, Form } from "formik";
 
-import { StyledContainer } from "./styleModal";
+import { StyledContainer, StyledButton } from "./styleModal";
 import { IMember, IMemberId } from "./interFace/member";
 import { addNewMember, updateMemberById } from "./api/member";
 import Field from "./components/fields";
@@ -69,12 +69,12 @@ const NewMember = (props: {
                 <Field {...props} name="last_name" placeholder="last name" />
                 <Field {...props} name="phone" placeholder="phone number" />
                 <Field {...props} name="email" placeholder="email" />
-                <button type="submit">submit</button>
-                <button onClick={() => {
+                <StyledButton type="submit">submit</StyledButton>
+                <StyledButton onClick={() => {
                   handleClose()
                   props.resetForm()
                 }}
-                  className="cancel" type="button">cancel</button>
+                  className="cancel" type="button">cancel</StyledButton>
               </Form>
             )}
           </Formik> : null}

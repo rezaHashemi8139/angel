@@ -1,6 +1,7 @@
 
 import { FastField, FormikErrors, FormikTouched } from "formik";
 import { IMember } from "../interFace/member";
+import { StyledFieldContainer } from "./styleFields";
 
 const Field = (props: {
   errors: FormikErrors<IMember>,
@@ -11,7 +12,7 @@ const Field = (props: {
 
   const { name, touched, placeholder, errors } = props
   return (
-    <>
+    <StyledFieldContainer>
       <label>{placeholder}</label>
       <FastField
         className={
@@ -28,7 +29,7 @@ const Field = (props: {
         <span>{errors[name]}</span>
       ) : null}
 
-    </>
+    </StyledFieldContainer>
   );
 };
 

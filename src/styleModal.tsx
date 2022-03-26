@@ -5,7 +5,6 @@ interface IContainer {
 }
 
 export const StyledContainer = styled.div<IContainer>`
-
   transition:all 0.3s;
   top:${props => props.open ? '0' : '100%'};
   position: fixed ;
@@ -33,33 +32,11 @@ export const StyledContainer = styled.div<IContainer>`
         color:red ;
       }
     }
-    span{
-      display:block;
-      color:red;
-      font-size:0.8rem;
-      margin-bottom:5px
-    }
   }
-  input{
-    width:calc(100% - 1.5rem);
-    display:block;
-    border:1px solid rgba(0,0,0,0.5);
-    padding:0.6rem;
-    margin:0.4rem 0 ;
-    border-radius:4px;
-    outline:none;
-    &:focus{
-      border-color:blue;
-    }
-    &.error{
-      border-color:red;
-    }
-    &.success{
-      border-color:green;
-    }
-  }
+`;
 
-  button{
+
+export const StyledButton = styled.button`
     display:block;
     width:100% ;
     border: none;
@@ -77,8 +54,7 @@ export const StyledContainer = styled.div<IContainer>`
     &:hover {
       opacity: 1;
     }
-  }
-`;
-
+  
+`
 
 

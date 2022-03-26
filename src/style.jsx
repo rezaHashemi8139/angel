@@ -18,6 +18,17 @@ export const StyledTable = styled.table`
 `;
 export const StyledButton = styled.button`
   border: none;
+  opacity: 0.85;
+  padding: 1rem 2rem;
+  background-color: darkgreen;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+  margin: 3rem;
+  transition: all 300ms;
+  &:hover {
+    opacity: 1;
+  }
 `;
 
 export const StyledContainer = styled.div`

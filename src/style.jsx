@@ -1,16 +1,42 @@
 import styled from "styled-components";
 
 export const StyledTable = styled.table`
-  width: calc(100% - 6rem);
-  background-color: red;
-  margin: 3rem 0;
+  width: 100%;
+  border-radius: 1rem;
   tr {
     text-align: center;
+    border: 1px solid black;
   }
   th {
     padding: 2rem 1rem;
+    border: 1px solid black;
   }
   td {
+    border: 1px solid black;
     padding: 1rem;
+  }
+`;
+export const StyledButton = styled.button`
+  border: none;
+`;
+
+export const StyledContainer = styled.div`
+  padding: 3rem;
+  i.fa {
+    transition: all 300ms;
+    padding: 1rem;
+    cursor: pointer;
+    &.fa-trash {
+      color: red;
+      &:hover {
+        color: darkred;
+      }
+    }
+    &.fa-edit {
+      color: green;
+      &:hover {
+        color: darkgreen;
+      }
+    }
   }
 `;

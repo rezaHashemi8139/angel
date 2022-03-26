@@ -8,8 +8,16 @@ export const StyledTable = styled.table`
     border: 1px solid black;
   }
   th {
+    &.sorting{
+      cursor: pointer;
+      user-select:none;
+    }
     padding: 2rem 1rem;
     border: 1px solid black;
+    >i.fa{
+      padding:0 ;
+      margin-left:1rem
+    }
   }
   td {
     border: 1px solid black;

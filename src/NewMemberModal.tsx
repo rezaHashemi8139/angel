@@ -29,10 +29,10 @@ const NewMember = (props: {
   }
 
   const schema = Yup.object().shape({
-    email: Yup.string().required().email(),
-    first_name: Yup.string().required().min(3),
-    last_name: Yup.string().required().min(3),
-    phone: Yup.number().required()
+    email: Yup.string().required().email().max(245),
+    first_name: Yup.string().required().min(2).max(245),
+    last_name: Yup.string().required().min(2).max(245),
+    phone: Yup.number()
   })
 
   const handleSubmit = async (values: IMember, actions: IActions) => {
@@ -48,8 +48,6 @@ const NewMember = (props: {
       console.error(error);
     }
   }
-
-
 
   return (
     <StyledContainer
@@ -75,7 +73,8 @@ const NewMember = (props: {
                 <button onClick={() => {
                   handleClose()
                   props.resetForm()
-                }} className="cancel" type="button">cancel</button>
+                }}
+                  className="cancel" type="button">cancel</button>
               </Form>
             )}
           </Formik> : null}

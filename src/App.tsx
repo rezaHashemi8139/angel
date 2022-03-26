@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { getAllMembers, deleteMemberById } from "./api/member";
+import { getAllMembers, deleteMemberById, getMemberById } from "./api/member";
 import { IMemberId } from "./interFace/member";
 import { StyledTable, StyledContainer, StyledButton } from "./styleApp";
 import NewMemberModal from "./NewMemberModal";
@@ -8,6 +8,7 @@ import NewMemberModal from "./NewMemberModal";
 
 function App() {
   const [memberList, setMemberList] = useState<IMemberId[]>([])
+  const [member, setMember] = useState<IMemberId | undefined>(undefined)
   const [modalIsOpen, setModalIsOpen] = useState<boolean>(false)
 
   const getMemberList = async () => {
@@ -30,6 +31,17 @@ function App() {
     }
   }
 
+  const handleEditMember = async (event: React.MouseEvent<HTMLElement>) => {
+    const [_, id] = event.currentTarget.id.split("_")
+    try {
+      const { data } = await getMemberById(id)
+      setMember(data)
+      setModalIsOpen(true)
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
   const initComponent = () => {
     getMemberList()
   }
@@ -40,6 +52,7 @@ function App() {
     <div>
       <StyledButton onClick={() => setModalIsOpen(true)}>add new member</StyledButton>
       <NewMemberModal
+        initials={member}
         open={modalIsOpen}
         handleClose={() => setModalIsOpen(false)}
         updateMemberList={getMemberList}
@@ -63,7 +76,7 @@ function App() {
               <td>{member.email}</td>
               <td>
                 <i className="fa fa-trash" id={`delete_${member.member_id}`} onClick={handleDeleteMember} />
-                <i className="fa fa-edit" id={`edit_${member.member_id}`} />
+                <i className="fa fa-edit" id={`edit_${member.member_id}`} onClick={handleEditMember} />
               </td>
             </tr>)}
           </tbody>

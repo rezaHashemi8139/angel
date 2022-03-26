@@ -1,7 +1,8 @@
-import {  axiosInstance} from "./index";
+import { axiosInstance } from "./index";
+import { IMember } from "../interFace/member";
 
-const url="members"
+const url = "members";
 
-export const getAllMembers=()=>{
-  return axiosInstance.get(url)
-}
+export const getAllMembers = () => {
+  return axiosInstance.get<IMember[]>(url);
+};
